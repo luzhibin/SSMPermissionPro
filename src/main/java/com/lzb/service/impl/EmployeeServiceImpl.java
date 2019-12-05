@@ -26,8 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public PageListRes getEmployee() {
-        System.out.println("来到了业务层");
-        /*分页查询*/
+        /*分页查询,后面做高级查询时把值传进来*/
         Page<Employee> page = PageHelper.startPage(1, 5);
         List<Employee> employees = employeeMapper.selectAll();
         /*封装成pageList*/
