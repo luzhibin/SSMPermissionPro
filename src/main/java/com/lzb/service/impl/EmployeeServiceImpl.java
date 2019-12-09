@@ -8,6 +8,7 @@ import com.lzb.pojo.PageListRes;
 import com.lzb.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * Created by luzhibin on 2019/11/10 0:26
  */
 @Service("employeeService")
+@Transactional  //事务
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeMapper employeeMapper;
@@ -34,5 +36,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         pageListRes.setTotal(page.getTotal());
         pageListRes.setRows(employees);
         return pageListRes;
+    }
+
+    @Override
+    public void saveEmployee(Employee employee){
+        employeeMapper.insert(employee);
     }
 }

@@ -104,7 +104,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="employee"></table>
+		<table tableName="department"></table>
 
 	</context>
 </generatorConfiguration>

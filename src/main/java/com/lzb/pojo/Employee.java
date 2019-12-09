@@ -14,7 +14,9 @@ public class Employee {
 
     private String username;
 
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    private String password;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")  //将数据库时间戳取出来转成JSON后做一个日期格式化
     @DateTimeFormat(pattern = "yyyy-MM-dd") //表单提交
     private Date inputtime;
 
@@ -26,5 +28,5 @@ public class Employee {
 
     private Boolean admin;
 
-    private Long depId;
+    private Department department;
 }

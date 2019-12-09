@@ -1,5 +1,6 @@
 package com.lzb.controller;
 
+import com.lzb.pojo.Employee;
 import com.lzb.pojo.PageListRes;
 import com.lzb.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class EmployeeController {
 
+    private final EmployeeService employeeService;
+
     @Autowired
-    private EmployeeService employeeService;
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @RequestMapping("/employeeList")
     @ResponseBody
@@ -27,5 +32,15 @@ public class EmployeeController {
     @RequestMapping("/employee")
     public String employee(){
         return "employee";
+    }
+
+    @RequestMapping("/save_employee")
+    @ResponseBody
+    public void saveEmployee(Employee employee){
+        System.out.println(employee);
+        employee.setState(true);
+        employeeService.saveEmployee(employee);
+
+        System.out.println("提交表单成功");
     }
 }

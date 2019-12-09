@@ -1,5 +1,6 @@
 package com.lzb.service;
 
+import com.lzb.pojo.Employee;
 import com.lzb.pojo.PageListRes;
 
 /**
@@ -8,4 +9,6 @@ import com.lzb.pojo.PageListRes;
 public interface EmployeeService {
     /*查询员工*/
     public PageListRes getEmployee();
+
+    void saveEmployee(Employee employee);
 }
