@@ -1,5 +1,6 @@
 package com.lzb.controller;
 
+import com.lzb.pojo.AjaxRes;
 import com.lzb.pojo.Employee;
 import com.lzb.pojo.PageListRes;
 import com.lzb.service.EmployeeService;
@@ -36,11 +37,18 @@ public class EmployeeController {
 
     @RequestMapping("/save_employee")
     @ResponseBody
-    public void saveEmployee(Employee employee){
+    public AjaxRes saveEmployee(Employee employee){
         System.out.println(employee);
-        employee.setState(true);
-        employeeService.saveEmployee(employee);
-
-        System.out.println("提交表单成功");
+        AjaxRes ajaxRes = new AjaxRes();
+        try {
+            employee.setState(true);
+            employeeService.saveEmployee(employee);
+            ajaxRes.setMsg("保存成功");
+            ajaxRes.setSuccess(true);
+        }catch (Exception e){
+            ajaxRes.setSuccess(false);
+            ajaxRes.setMsg("保存失败");
+        }
+        return ajaxRes;
     }
 }

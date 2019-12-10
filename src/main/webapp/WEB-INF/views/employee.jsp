@@ -27,14 +27,14 @@
 <%--数据表格--%>
 <table id="dg"></table>
 <%--对话框--%>
-<div id="dialog" class="dialog-button" title="添加员工">
+<div id="dialog" class="dialog-button">
     <form id="employeeForm">
         <table align="center" style="border-spacing: 5px 10px">
             <tr>
                 <td>用户名:</td>
                 <td><input type="text" name="username" class="easyui-validatebox" data-options="required:true"/></td>
             </tr>
-            <tr>
+            <tr id="password">
                 <td>密码:</td>
                 <td><input type="text" name="password" class="easyui-validatebox" data-options="required:true"/></td>
             </tr>
@@ -55,8 +55,12 @@
                 <td><input id="department" name="department.id" placeholder="请选择部门"/></td>
             </tr>
             <tr>
+                <td>状态:</td>
+                <td><input id="state" name="state" placeholder="是否在职" data-options="required:true"/></td>
+            </tr>
+            <tr>
                 <td>是否管理员:</td>
-                <td><input id="state" name="admin" placeholder="请选择"/></td>
+                <td><input id="admin" name="admin" data-options="required:true"/></td>
             </tr>
         </table>
     </form>
