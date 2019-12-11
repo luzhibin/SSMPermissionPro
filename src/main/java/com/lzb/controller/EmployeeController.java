@@ -35,7 +35,7 @@ public class EmployeeController {
         return "employee";
     }
 
-    @RequestMapping("/save_employee")
+    @RequestMapping("/saveEmployee")
     @ResponseBody
     public AjaxRes saveEmployee(Employee employee){
         System.out.println(employee);

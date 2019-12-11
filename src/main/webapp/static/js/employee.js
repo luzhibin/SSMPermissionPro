@@ -8,7 +8,7 @@ $(function () {
             {field:'tel',title:'电话',width:100,align:'center'},
             {field:'email',title:'邮箱',width:100,align:'center'},
             {field:'department',title:'部门',width:100,align:'center',formatter:function (value,row,index) {
-                if (value.name){
+                if (value){
                     return value.name;
                 }
             }},
@@ -44,12 +44,22 @@ $(function () {
         height:400,
         resizable:true,  //定义对话框是否可调整尺寸
         closeOnEscape:true, //按ESC关闭对话框
+        shadow:true,
         buttons:[{
             text:'保存',
             handler:function(){
+                /*判断当前是添加还是编辑*/
+                var id = $("[name='id']").val();
+                var url;
+                if (id){
+                    /*如果能获取到ID值  说明是编辑操作*/
+                    url = "updateEmployee";
+                }else{/*否则是添加操作*/
+                    url = "saveEmployee";
+                }
                 /*提交表单*/
                 $("#employeeForm").form("submit",{
-                    url:"save_employee",
+                    url:url,
                     success:function (data) {
                         data = $.parseJSON(data);   //把data转成JSON
                         if (data.success){
@@ -80,6 +90,7 @@ $(function () {
         $("#password").show();
         $("#state").show();
         $("#employeeForm").form("clear");
+        $("#admin").combobox('setValue','false')
     });
 
     /*监听编辑按钮点击事件*/
@@ -105,7 +116,7 @@ $(function () {
 
     /*部门选择 combobox-下拉列表*/
     $("#department").combobox({
-       width:150,
+       width:'auto',
        panelHeight:"auto",  //自动高度
        url:"departList",
        valueField:'id',     //把部门id发送给服务端
@@ -124,7 +135,7 @@ $(function () {
 
     /*是否为管理员*/
     $("#admin").combobox({
-        width:150,
+        width:'auto',
         panelHeight:'auto', //自动高度
         valueField:'value', //指定发送给服务器的字段
         textField:'label',  //在前段文本框展示的字段
@@ -137,7 +148,7 @@ $(function () {
             value:'false'
         }],
         onLoadSuccess:function () { //在加载远程数据成功的时候触发:显示placeholder里的内容
-            $("#state").each(function(i){
+            $("#admin").each(function(i){
                 var span = $(this).siblings("span")[i];
                 var targetInput = $(span).find("input:first");
                 if(targetInput){

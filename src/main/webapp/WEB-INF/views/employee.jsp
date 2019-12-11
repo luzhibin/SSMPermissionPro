@@ -27,8 +27,10 @@
 <%--数据表格--%>
 <table id="dg"></table>
 <%--对话框--%>
-<div id="dialog" class="dialog-button">
+<div id="dialog" class="dialog">
     <form id="employeeForm">
+        <%--添加一个隐藏域 专门用于编辑操作--%>
+        <input type="hidden" name="id">
         <table align="center" style="border-spacing: 5px 10px">
             <tr>
                 <td>用户名:</td>
@@ -52,11 +54,7 @@
             </tr>
             <tr>
                 <td>部门:</td>
-                <td><input id="department" name="department.id" placeholder="请选择部门"/></td>
-            </tr>
-            <tr>
-                <td>状态:</td>
-                <td><input id="state" name="state" placeholder="是否在职" data-options="required:true"/></td>
+                <td><input id="department" name="department.id" placeholder="请选择部门" data-options="required:true"/></td>
             </tr>
             <tr>
                 <td>是否管理员:</td>
