@@ -9,19 +9,14 @@
 <html>
 <head>
     <title>员工主页</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/plugins/easyui/uimaker/easyui.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/plugins/easyui/uimaker/icon.css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/plugins/easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/plugins/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/plugins/easyui/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/employee.js"></script>
+    <%@include file="/static/common/common.jsp" %>
 </head>
 <body>
 <%--工具栏--%>
 <div id="tb">
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" id="add">添加</a>
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" id="edit">编辑</a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" id="delete">删除</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" id="delete">离职</a>
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true" id="reload">刷新</a>
 </div>
 <%--数据表格--%>
@@ -38,7 +33,7 @@
             </tr>
             <tr id="password">
                 <td>密码:</td>
-                <td><input type="text" name="password" class="easyui-validatebox" data-options="required:true"/></td>
+                <td><input type="text" name="password" class="easyui-validatebox"/></td>
             </tr>
             <tr>
                 <td>手机:</td>

@@ -1,7 +1,7 @@
 $(function () {
     /*员式数据列表*/
     $("#dg").datagrid({
-        url:"http://localhost:8080/PromissionPro/employeeList",
+        url:"http://localhost:8080/employeeList",
         columns:[[
             {field:'username',title:'姓名',width:100,align:'center'},
             {field:'inputtime',title:'入职时间',width:100,align:'center'},
@@ -34,7 +34,20 @@ $(function () {
         pagination:true,     //如果为true，则在数据表格控件底部显示分页工具栏。
         singleSelect:true,  //只能同时选择一行
         striped:true,       //斑马线效果
-        toolbar:"#tb"
+        toolbar:"#tb",
+        /*在用户点击一行的时候触发，参数包括：
+          rowIndex：点击的行的索引值，该索引值从0开始。
+          rowData：对应于点击行的记录。*/
+        onClickRow:function (rowIndex,rowData) {
+            //判断当前行是否是离职状态
+            if (rowData.state){ //state为true
+                //未离职，离职按钮启用
+                $("#delete").linkbutton("enable");
+            } else {
+                //已离职，把离职按钮禁用
+                $("#delete").linkbutton("disable");
+            }
+        }
     });
 
     /*对话框*/
@@ -86,11 +99,12 @@ $(function () {
     $("#add").click(function () {
         //$("#dialog").dialog("setTittle","添加员工");
         //$("#dialog").dialog("open");
-        $("#dialog").dialog({title:"添加员工"}).dialog('open');
         $("#password").show();
-        $("#state").show();
         $("#employeeForm").form("clear");
-        $("#admin").combobox('setValue','false')
+        $("#admin").combobox('setValue','false');
+        /*添加密码验证*/
+        $("[name='password']").validatebox({required:true});
+        $("#dialog").dialog({title:"添加员工"}).dialog('open');
     });
 
     /*监听编辑按钮点击事件*/
@@ -103,6 +117,8 @@ $(function () {
             $.messager.alert("提示","请选择一行数据进行编辑");
             return;
         }
+        /*取消密码验证*/
+        $("[name='password']").validatebox({required:false});
         $("#password").hide();      //隐藏密码字段
         /*弹出对话框并设置标题*/
         $("#dialog").dialog({title:"编辑员工"}).dialog('open');
@@ -158,4 +174,28 @@ $(function () {
         }
     });
 
+    /*监听离职按钮的点击事件*/
+    $("#delete").click(function () {
+        /*获取当前选中的行*/
+        var rowData = $("#dg").datagrid("getSelected");
+        console.log(rowData);
+        if (!rowData){
+            $.messager.alert("提示","请选择一行数据进行编辑");
+            return;
+        }
+        $.messager.confirm("提示","是否确认离职操作",function (res) {
+            if(res){
+                //做离职操作
+                $.get("/updateState?id="+rowData.id,function (data) {
+                    if (data.success){
+                        $.messager.alert("提示",data.msg,"info");
+                        /*并且重新加载数据表格*/
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("提示",data.msg,"error");
+                    }
+                })
+            }
+        });
+    })
 });

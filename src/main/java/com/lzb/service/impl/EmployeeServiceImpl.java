@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.lzb.mapper.EmployeeMapper;
 import com.lzb.pojo.Employee;
 import com.lzb.pojo.PageListRes;
+import com.lzb.pojo.QueryVo;
 import com.lzb.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public PageListRes getEmployee() {
+    public PageListRes getEmployee(QueryVo vo) {
         /*分页查询,后面做高级查询时把值传进来*/
-        Page<Employee> page = PageHelper.startPage(1, 15);
+        Page<Employee> page = PageHelper.startPage(vo.getPage(), vo.getRows());
         List<Employee> employees = employeeMapper.selectAll();
         /*封装成pageList*/
         PageListRes pageListRes = new PageListRes();
@@ -38,8 +39,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         return pageListRes;
     }
 
-    @Override
+    @Override   //添加员工
     public void saveEmployee(Employee employee){
         employeeMapper.insert(employee);
+    }
+
+    @Override   //更新员工信息
+    public void updateEmployee(Employee employee){
+        employeeMapper.updateByPrimaryKey(employee);
+    }
+
+    @Override //修改员工离职状态
+    public void updateState(Long id){
+        employeeMapper.updateState(id);
     }
 }

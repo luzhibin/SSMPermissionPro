@@ -13,4 +13,7 @@ public interface EmployeeMapper {
     List<Employee> selectAll();
 
     int updateByPrimaryKey(Employee record);
+
+    //设置员工离职状态
+    int updateState(Long id);
 }
