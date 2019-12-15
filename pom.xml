@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.itlike</groupId>
-    <artifactId>PromissionPro</artifactId>
+    <artifactId>SSMPermissionPro</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>PromissionPro Maven Webapp</name>
+    <name>SSMPermissionPro Maven Webapp</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -268,7 +268,7 @@
     </dependencies>
 
     <build>
-        <finalName>PromissionPro</finalName>
+        <finalName>SSMPermissionPro</finalName>
         <plugins>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
