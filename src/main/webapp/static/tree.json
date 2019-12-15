@@ -6,17 +6,17 @@
       {
         "id":2,
         "text": "员工管理",
-         "url": "http://localhost:8080/employee"
+         "url": "/employee"
       },
       {
         "id":3,
         "text": "权限管理",
-          "url": "http://localhost:8080/role"
+          "url": "/role"
       },
       {
         "id":4,
         "text": "菜单管理",
-        "url": "http://localhost:8080/menu"
+        "url": "/menu"
 
       }
     ]
