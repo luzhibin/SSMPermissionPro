@@ -45,6 +45,20 @@
     from employee
     where id = #{id,jdbcType=BIGINT}
   </select>
+
+  <!--sql片段-->
+  <sql id="where_sql">
+    <where>
+      <if test="keyword != null and keyword !=''">
+        and e.username like concat('%',#{keyword},'%')
+        or e.tel like concat('%',#{keyword},'%')
+        or e.email like concat('%',#{keyword},'%')
+        or e.state like concat('%',#{keyword},'%')
+        or e.admin like concat('%',#{keyword},'%')
+      </if>
+    </where>
+  </sql>
+
   <select id="selectAll" resultMap="BaseResultMap" >
     select
     e.id,e.username,e.inputtime,e.tel,e.email,e.state,e.admin,e.dep_id,
@@ -53,6 +67,8 @@
     from employee as e
     left join department as d
     on e.dep_id = d.id
+    <include refid="where_sql"/>
+    order by e.id           /*根据e.id排序*/
   </select>
 
     <update id="updateState">

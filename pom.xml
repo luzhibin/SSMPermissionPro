@@ -268,7 +268,7 @@
     </dependencies>
 
     <build>
-        <finalName>PromissionPro</finalName>
+        <finalName>SSMPermissionPro</finalName>
         <plugins>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>

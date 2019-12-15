@@ -31,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public PageListRes getEmployee(QueryVo vo) {
         /*分页查询,后面做高级查询时把值传进来*/
         Page<Employee> page = PageHelper.startPage(vo.getPage(), vo.getRows());
-        List<Employee> employees = employeeMapper.selectAll();
+        List<Employee> employees = employeeMapper.selectAll(vo);
         /*封装成pageList*/
         PageListRes pageListRes = new PageListRes();
         pageListRes.setTotal(page.getTotal());

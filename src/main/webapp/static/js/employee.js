@@ -197,5 +197,21 @@ $(function () {
                 })
             }
         });
-    })
+    });
+
+    /*监听搜索按钮的点击事件*/
+    $("#search").click(function () {
+        /*获取搜索的内容*/
+        var keyword = $("[name='keyword']").val();
+        //重新加载列表  把参数keyword传过去
+        $("#dg").datagrid("load",{keyword:keyword});
+    });
+
+    /*监听刷新点击*/
+    $("#reload").click(function () {
+        /*清空搜索内容*/
+        var keyword = $("[name='keyword']").val();
+        /*重新加载数据*/
+        $("#dg").datagrid("load",{});
+    });
 });

@@ -28,6 +28,7 @@ public class EmployeeController {
     @RequestMapping("/employeeList")
     @ResponseBody
     public PageListRes employeeList(QueryVo vo){
+        System.out.println(vo);
         /*调用业务层查询员工*/
         PageListRes pageListRes = employeeService.getEmployee(vo);
         return pageListRes;
