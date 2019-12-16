@@ -13,6 +13,6 @@ import java.util.List;
 @Setter@Getter
 public class PageListRes {
     private Long total;     //总数
-    private List<Employee> rows = new ArrayList<>();
+    private List<?> rows = new ArrayList<>();
 
 }

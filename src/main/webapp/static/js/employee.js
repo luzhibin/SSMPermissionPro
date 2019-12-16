@@ -1,7 +1,7 @@
 $(function () {
-    /*员式数据列表*/
+    /*员工数据列表*/
     $("#dg").datagrid({
-        url:"http://localhost:8080/employeeList",
+        url:"/employeeList",
         columns:[[
             {field:'username',title:'姓名',width:100,align:'center'},
             {field:'inputtime',title:'入职时间',width:100,align:'center'},

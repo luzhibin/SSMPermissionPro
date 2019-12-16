@@ -8,9 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Role.jsp</title>
+    <%@include file="/static/common/common.jsp" %>
 </head>
 <body>
-<h1>角色</h1>
+
+<%--数据表格 --%>
+<div id="role_dg"></div>
 </body>
 </html>
