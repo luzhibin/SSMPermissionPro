@@ -14,15 +14,15 @@
 
 <body class="easyui-layout">
 <%--头部--%>
-<div data-options="region:'north'" style="height:100px; background: #ec4e00; padding: 20px 20px">
+<div data-options="region:'north'" style="height:100px; background: #ec4e00; padding: 20px 20px;margin: 0 auto;">
     <img src="static/images/main_logo.png" alt="">
 </div>
 <%--底部--%>
-<div data-options="region:'south'" style="height:50px; border-bottom: 3px solid #ec4e00">
+<div data-options="region:'south'" style="height:50px; border-bottom: 3px solid #ec4e00;margin:0 auto;">
     <p align="center" style="font-size: 14px">撩课学院</p>
 </div>
 <%--左侧菜单--%>
-<div data-options="region:'west',split:true" style="width:300px;">
+<div data-options="region:'west',split:true" style="width:300px;margin:0 auto;">
 
     <div id="aa" class="easyui-accordion" data-options="fit:true">
         <div title="菜单" data-options="iconCls:'icon-save',selected:true" style="overflow:auto;padding:10px;">
@@ -35,7 +35,7 @@
     </div>
 </div>
 <%--右侧主区域--%>
-<div data-options="region:'center'" style="background:#eee;">
+<div data-options="region:'center'" style="background:#eee; margin:0 auto;">
     <!--标签-->
     <div id="tabs" style="overflow: hidden" >
 

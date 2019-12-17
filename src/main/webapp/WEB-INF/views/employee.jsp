@@ -13,7 +13,7 @@
 </head>
 <body>
 <%--工具栏--%>
-<div id="tb">
+<div id="employee_toolbar">
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" id="add">添加</a>
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" id="edit">编辑</a>
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" id="delete">离职</a>
@@ -24,7 +24,7 @@
 <%--数据表格--%>
 <table id="dg"></table>
 <%--对话框--%>
-<div id="dialog" class="dialog">
+<div id="employee_dialog" class="dialog" style="margin: 0 auto">
     <form id="employeeForm">
         <%--添加一个隐藏域 专门用于编辑操作--%>
         <input type="hidden" name="id">

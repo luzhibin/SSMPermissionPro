@@ -1,8 +1,11 @@
 package com.lzb.pojo;
 
-import lombok.ToString;
+import lombok.Data;
 
-@ToString
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
 public class Role {
     private Long rid;
 
@@ -10,27 +13,7 @@ public class Role {
 
     private String rname;
 
-    public Long getRid() {
-        return rid;
-    }
+    /*一个角色可以有多个权限*/
+    private List<Permission> permissions = new ArrayList<>();
 
-    public void setRid(Long rid) {
-        this.rid = rid;
-    }
-
-    public String getRnum() {
-        return rnum;
-    }
-
-    public void setRnum(String rnum) {
-        this.rnum = rnum == null ? null : rnum.trim();
-    }
-
-    public String getRname() {
-        return rname;
-    }
-
-    public void setRname(String rname) {
-        this.rname = rname == null ? null : rname.trim();
-    }
 }

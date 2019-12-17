@@ -1,6 +1,8 @@
 $(function () {
     /*员工数据列表*/
     $("#dg").datagrid({
+        pageSize: 20,//每页显示的记录条数，默认为10
+        pageList: [20,40,60,80],//可以设置每页记录条数的列表
         url:"/employeeList",
         columns:[[
             {field:'username',title:'姓名',width:100,align:'center'},
@@ -34,7 +36,7 @@ $(function () {
         pagination:true,     //如果为true，则在数据表格控件底部显示分页工具栏。
         singleSelect:true,  //只能同时选择一行
         striped:true,       //斑马线效果
-        toolbar:"#tb",
+        toolbar:"#employee_toolbar",
         /*在用户点击一行的时候触发，参数包括：
           rowIndex：点击的行的索引值，该索引值从0开始。
           rowData：对应于点击行的记录。*/
@@ -51,9 +53,9 @@ $(function () {
     });
 
     /*对话框*/
-    $("#dialog").dialog({
+    $("#employee_dialog").dialog({
         closed:true,    //是否隐藏对话框
-        width:400,
+        width:300,
         height:400,
         resizable:true,  //定义对话框是否可调整尺寸
         closeOnEscape:true, //按ESC关闭对话框
@@ -78,7 +80,7 @@ $(function () {
                         if (data.success){
                             $.messager.alert("提示",data.msg,"info");
                             /*提示成功后关闭对话框*/
-                            $("#dialog").dialog("close");
+                            $("#employee_dialog").dialog("close");
                             /*并且重新加载数据表格*/
                             $("#dg").datagrid("reload");
                         } else {
@@ -90,21 +92,21 @@ $(function () {
         },{
             text:'关闭',
             handler:function(){
-                $("#dialog").dialog("close");
+                $("#employee_dialog").dialog("close");
             }
         }]
     });
 
     /*监听添加按钮的点击事件*/
     $("#add").click(function () {
-        //$("#dialog").dialog("setTittle","添加员工");
-        //$("#dialog").dialog("open");
+        //$("#employee_dialog").dialog("setTittle","添加员工");
+        //$("#employee_dialog").dialog("open");
         $("#password").show();
         $("#employeeForm").form("clear");
         $("#admin").combobox('setValue','false');
         /*添加密码验证*/
         $("[name='password']").validatebox({required:true});
-        $("#dialog").dialog({title:"添加员工"}).dialog('open');
+        $("#employee_dialog").dialog({title:"添加员工"}).dialog('open');
     });
 
     /*监听编辑按钮点击事件*/
@@ -121,7 +123,7 @@ $(function () {
         $("[name='password']").validatebox({required:false});
         $("#password").hide();      //隐藏密码字段
         /*弹出对话框并设置标题*/
-        $("#dialog").dialog({title:"编辑员工"}).dialog('open');
+        $("#employee_dialog").dialog({title:"编辑员工"}).dialog('open');
         /*回显部门*/
         rowData["department.id"] = rowData["department"].id;
         /*回显管理员*/
