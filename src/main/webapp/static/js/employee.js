@@ -75,6 +75,15 @@ $(function () {
                 /*提交表单*/
                 $("#employeeForm").form("submit",{
                     url:url,
+                    onSubmit:function(param){
+                        /*获取选中的角色*/
+                        var values = $("#role").combobox("getValues");
+                        /*对参数进行遍历*/
+                        for (var i = 0; i < values.length; i++){
+                            var rid = values[i];
+                            param["roles["+i+"].rid"] = rid;
+                        }
+                    },
                     success:function (data) {
                         data = $.parseJSON(data);   //把data转成JSON
                         if (data.success){
@@ -128,6 +137,11 @@ $(function () {
         rowData["department.id"] = rowData["department"].id;
         /*回显管理员*/
         rowData["admin"]=rowData["admin"]+"";
+        /*回显角色——根据当前用户的id，查出对应的角色*/
+        $.get("/getRoleByEid?id="+rowData.id,function (data) {
+           /*设置下拉列表数据的回显*/
+           $("#role").combobox("setValues",data);
+        });
         /*做选中数据的回显*/
         $("#employeeForm").form("load",rowData);
     });
@@ -167,6 +181,26 @@ $(function () {
         }],
         onLoadSuccess:function () { //在加载远程数据成功的时候触发:显示placeholder里的内容
             $("#admin").each(function(i){
+                var span = $(this).siblings("span")[i];
+                var targetInput = $(span).find("input:first");
+                if(targetInput){
+                    $(targetInput).attr("placeholder", $(this).attr("placeholder"));
+                }
+            });
+        }
+    });
+
+    /*选择角色下拉列表*/
+    $("#role").combobox({
+        width:'auto',
+        panelHeight:'auto', //自动高度
+        editable:false,     //不允许编辑该下拉框
+        url:"roleList",
+        valueField:'rid',     //把rid发送给服务端
+        textField:'rname',     //展示给前端的数据
+        multiple:true,          //定义是否支持多选
+        onLoadSuccess:function () { //在加载远程数据成功的时候触发:显示placeholder里的内容
+            $("#role").each(function(i){
                 var span = $(this).siblings("span")[i];
                 var targetInput = $(span).find("input:first");
                 if(targetInput){

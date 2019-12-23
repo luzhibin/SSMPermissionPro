@@ -19,4 +19,6 @@ public interface EmployeeService {
 
     //设置员工离职状态
     void updateState(Long id);
+
+
 }

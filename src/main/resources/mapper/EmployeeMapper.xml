@@ -19,8 +19,8 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
-  <!--添加员工-->
-  <insert id="insert" parameterType="com.lzb.pojo.Employee" >
+    <!--添加员工-->
+  <insert id="insert" parameterType="com.lzb.pojo.Employee" useGeneratedKeys="true" keyProperty="id">
     insert into employee (id, username, password, inputtime,
       tel, email, state, admin, 
       dep_id)
@@ -76,4 +76,16 @@
         set state=false
         where id=#{id}
     </update>
+
+  <!--保存员工和角色的关系-->
+  <insert id="insertEmployeeAndRoleRel">
+    insert into employee_role_rel(eid, rid)
+    values (#{id},#{rid})
+  </insert>
+
+  <!--打破员工与角色的关系-->
+  <delete id="deleteRoleRel">
+    delete from employee_role_rel
+    where eid=#{id}
+  </delete>
 </mapper>

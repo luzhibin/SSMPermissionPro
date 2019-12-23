@@ -1,15 +1,15 @@
 package com.lzb.controller;
 
-import com.lzb.pojo.AjaxRes;
-import com.lzb.pojo.Employee;
-import com.lzb.pojo.PageListRes;
-import com.lzb.pojo.QueryVo;
+import com.lzb.pojo.*;
 import com.lzb.service.EmployeeService;
+import com.lzb.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.util.resources.ga.LocaleNames_ga;
 
+import java.util.List;
 import java.util.jar.JarEntry;
 
 /**
@@ -21,14 +21,15 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService, RoleService roleService) {
         this.employeeService = employeeService;
+        this.roleService = roleService;
     }
+    private final RoleService roleService;
 
     @RequestMapping("/employeeList")
     @ResponseBody
     public PageListRes employeeList(QueryVo vo){
-        System.out.println(vo);
         /*调用业务层查询员工*/
         PageListRes pageListRes = employeeService.getEmployee(vo);
         return pageListRes;
@@ -39,9 +40,17 @@ public class EmployeeController {
         return "employee";
     }
 
+    /*employe.jsp的下拉列表*/
+    @RequestMapping("/roleList")
+    @ResponseBody
+    public List<Role> roleList(){
+        return roleService.roleList();
+    }
+
     @RequestMapping("/saveEmployee")
     @ResponseBody
     public AjaxRes saveEmployee(Employee employee){
+        System.out.println("----------------------------------------------");
         System.out.println(employee);
         AjaxRes ajaxRes = new AjaxRes();
         try {
@@ -80,10 +89,10 @@ public class EmployeeController {
             ajaxRes.setMsg("更新信息成功");
             ajaxRes.setSuccess(true);
         }catch (Exception e){
-            System.out.println(e);
             ajaxRes.setMsg("更新信息失败");
             ajaxRes.setSuccess(false);
         }
         return ajaxRes;
     }
+
 }

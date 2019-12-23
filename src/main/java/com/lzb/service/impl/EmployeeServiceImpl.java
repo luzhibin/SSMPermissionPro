@@ -6,6 +6,7 @@ import com.lzb.mapper.EmployeeMapper;
 import com.lzb.pojo.Employee;
 import com.lzb.pojo.PageListRes;
 import com.lzb.pojo.QueryVo;
+import com.lzb.pojo.Role;
 import com.lzb.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,12 +42,31 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override   //添加员工
     public void saveEmployee(Employee employee){
+        /*保存员工*/
         employeeMapper.insert(employee);
+        /*保存员工与角色的关系*/
+        for (Role role:employee.getRoles()){
+/*            System.out.println("==================================================");
+            System.out.println(role);
+            System.out.println(employee.getRoles());*/
+            employeeMapper.insertEmployeeAndRoleRel(employee.getId(),role.getRid());
+        }
     }
 
-    @Override   //更新员工信息
+    /**
+     * 更新员工
+     * @param employee
+     */
+    @Override
     public void updateEmployee(Employee employee){
+        /*打破员工与角色的关系*/
+        employeeMapper.deleteRoleRel(employee.getId());
+        /*更新员工*/
         employeeMapper.updateByPrimaryKey(employee);
+        /*重新建立员工与角色的关系*/
+        for (Role role:employee.getRoles()){
+            employeeMapper.insertEmployeeAndRoleRel(employee.getId(),role.getRid());
+        }
     }
 
     @Override //修改员工离职状态

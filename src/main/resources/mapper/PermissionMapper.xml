@@ -31,4 +31,9 @@
     select pid, pname, presource
     from permission
   </select>
+  <!--根据角色的rid查询对应权限-->
+  <select id="selectPermissionByRid" resultType="com.lzb.pojo.Permission">
+    select * from permission where pid in (select pid from role_permission_rel where rid = #{rid})
+  </select>
+
 </mapper>

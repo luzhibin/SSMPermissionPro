@@ -2,6 +2,7 @@ package com.lzb.mapper;
 
 import com.lzb.pojo.Employee;
 import com.lzb.pojo.QueryVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,4 +20,10 @@ public interface EmployeeMapper {
 
     //设置员工离职状态
     int updateState(Long id);
+
+    /*保存员工和角色的关系*/
+    void insertEmployeeAndRoleRel(@Param("id") Long id, @Param("rid") Long rid);
+
+    /*打破员工和角色的关系*/
+    void deleteRoleRel(Long id);
 }

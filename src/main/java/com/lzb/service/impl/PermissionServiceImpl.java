@@ -25,4 +25,14 @@ public class PermissionServiceImpl implements PermissionService {
     public List<Permission> getPermissions() {
         return permissionMapper.selectAll();
     }
+
+    /**
+     * 根据角色rid查询对应的权限
+     * @param rid
+     * @return
+     */
+    @Override
+    public List<Permission> getPermissionByRid(Long rid) {
+       return permissionMapper.selectPermissionByRid(rid);
+    }
 }

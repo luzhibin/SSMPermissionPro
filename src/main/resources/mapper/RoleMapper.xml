@@ -10,13 +10,13 @@
     delete from role
     where rid = #{rid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.lzb.pojo.Role" >
-    insert into role (rid, rnum, rname
-      )
-    values (#{rid,jdbcType=BIGINT}, #{rnum,jdbcType=VARCHAR}, #{rname,jdbcType=VARCHAR}
-      )
+
+  <insert id="insert" parameterType="com.lzb.pojo.Role" useGeneratedKeys="true" keyProperty="rid">
+    insert into role (rid, rnum, rname)
+    values (#{rid,jdbcType=BIGINT}, #{rnum,jdbcType=VARCHAR}, #{rname,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.lzb.pojo.Role" >
+
+    <update id="updateByPrimaryKey" parameterType="com.lzb.pojo.Role" >
     update role
     set rnum = #{rnum,jdbcType=VARCHAR},
       rname = #{rname,jdbcType=VARCHAR}
@@ -30,5 +30,22 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select rid, rnum, rname
     from role
+  </select>
+
+    <!--保存角色和权限的关系-->
+    <insert id="insertRoleAndPermissionRel">
+      insert into role_permission_rel(rid, pid)
+      values (#{rid},#{pid})
+    </insert>
+
+  <!--打破角色与权限之间的关系-->
+  <delete id="deletePermissionRel">
+    delete from role_permission_rel where rid=#{rid}
+  </delete>
+
+  <!--根据用户id查询对应角色-->
+  <select id="getRoleById" resultType="java.lang.Long">
+    select rid from employee_role_rel
+    where eid=#{id}
   </select>
 </mapper>

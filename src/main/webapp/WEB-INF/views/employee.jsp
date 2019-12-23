@@ -57,6 +57,10 @@
                 <td>是否管理员:</td>
                 <td><input id="admin" name="admin" data-options="required:true"/></td>
             </tr>
+            <tr>
+                <td>选择角色:</td>
+                <td><input id="role" name="role.rid" placeholder="请选择角色" data-options="required:true"/></td>
+            </tr>
         </table>
     </form>
 </div>
