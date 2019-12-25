@@ -73,4 +73,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void updateState(Long id){
         employeeMapper.updateState(id);
     }
+
+    @Override
+    public Employee getEmployeeByUsername(String username) {
+        //employeeMapper.;
+        return null;
+    }
 }

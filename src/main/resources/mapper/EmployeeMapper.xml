@@ -71,11 +71,11 @@
     order by e.id           /*根据e.id排序*/
   </select>
 
-    <update id="updateState">
-        update employee
-        set state=false
-        where id=#{id}
-    </update>
+  <update id="updateState">
+      update employee
+      set state=false
+      where id=#{id}
+   </update>
 
   <!--保存员工和角色的关系-->
   <insert id="insertEmployeeAndRoleRel">
@@ -88,4 +88,9 @@
     delete from employee_role_rel
     where eid=#{id}
   </delete>
+
+  <select id="getEmployeeByUsername" resultType="com.lzb.pojo.Employee">
+    select * from employee
+    where username=#{username}
+  </select>
 </mapper>

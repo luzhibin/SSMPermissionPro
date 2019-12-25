@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+     http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+">
+
+    <!--配置filter过滤器-->
+    <bean id="myFormFilter" class="com.lzb.controller.filter.MyFormFilter"/>
+
+    <!-- 配置shiro过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--
+        其他的请求会判断当前是否有认证过    默认情况下没有认证会跳转到login页面
+        loginUrl：如果发现请求是loginUrl的值   会去做认证
+        配置登录认证的路径
+        -->
+        <property name="loginUrl" value="/login"/>
+
+        <!--配置表单监听过滤器-->
+        <property name="filters">
+            <map>
+                <entry key="authc" value-ref="myFormFilter" />
+            </map>
+        </property>
+
+        <property name="securityManager" ref="securityManager"></property>
+        <!-- 配置shiro过滤器pattern -->
+        <property name="filterChainDefinitions">
+            <value>
+                /static/** = anon   <!--不需要登录验证-->
+                /login.jsp = anon   <!--不需要登录验证-->
+                /**=authc     <!--除指定请求外,其它所有的请求都需要身份验证-->
+            </value>
+        </property>
+    </bean>
+
+    <!--自定义realm-->
+    <bean id="employeeRealm" class="com.lzb.controller.realm.EmployeeRealm"/>
+
+    <!-- 配置shiro安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!--注入realm-->
+        <property name="realm" ref="employeeRealm"/>
+    </bean>
+
+</beans>

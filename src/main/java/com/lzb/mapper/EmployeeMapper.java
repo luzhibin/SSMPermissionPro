@@ -26,4 +26,7 @@ public interface EmployeeMapper {
 
     /*打破员工和角色的关系*/
     void deleteRoleRel(Long id);
+
+    /*根据用户名查询是否有该用户*/
+    Employee getEmployeeByUsername(String username);
 }

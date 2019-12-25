@@ -9,7 +9,7 @@ import com.lzb.pojo.QueryVo;
  */
 public interface EmployeeService {
     /*查询员工*/
-    public PageListRes getEmployee(QueryVo vo);
+    PageListRes getEmployee(QueryVo vo);
 
     //添加员工
     void saveEmployee(Employee employee);
@@ -20,5 +20,6 @@ public interface EmployeeService {
     //设置员工离职状态
     void updateState(Long id);
 
-
+    /*根据用户名当中查询有没有当前用户*/
+    Employee getEmployeeByUsername(String username);
 }
