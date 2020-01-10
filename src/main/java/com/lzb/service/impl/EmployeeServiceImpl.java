@@ -76,7 +76,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployeeByUsername(String username) {
-        //employeeMapper.;
-        return null;
+        return employeeMapper.getEmployeeByUsername(username);
+
     }
 }

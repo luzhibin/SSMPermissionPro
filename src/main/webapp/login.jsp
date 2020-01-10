@@ -29,11 +29,11 @@
                     <form>
                         <div class="lg-username input-item clearfix">
                             <i class="iconfont"></i>
-                            <input type="text" value="luzhibin" name="username" placeholder="请用户名">
+                            <input type="text" value="admin" name="username" placeholder="请用户名">
                         </div>
                         <div class="lg-password input-item clearfix">
                             <i class="iconfont"></i>
-                            <input type="password" value="1234" name="password"  placeholder="请输入密码">
+                            <input type="password" value="admin" name="password"  placeholder="请输入密码">
                         </div>
 
                         <div class="enter">

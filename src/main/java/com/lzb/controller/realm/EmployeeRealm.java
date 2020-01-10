@@ -9,7 +9,6 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -28,6 +27,7 @@ public class EmployeeRealm extends AuthorizingRealm {
         System.out.println(username);
         /*到数据库中查询是否有当前用户*/
         Employee employee = employeeService.getEmployeeByUsername(username);
+        System.out.println(employee);
         if (employee==null){
             return null;
         }
@@ -35,11 +35,11 @@ public class EmployeeRealm extends AuthorizingRealm {
         /*交由认证器进行认证*/
         /*参数：主体，密码，盐值，当前realm名称*/
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
-                employee.getUsername(),
+                employee,
                 employee.getPassword(),
-                ByteSource.Util.bytes("saltValue"),
+                //ByteSource.Util.bytes(""),
                 this.getName());
-        return null;
+        return info;
     }
 
     /*授权*/

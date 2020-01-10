@@ -2,6 +2,7 @@ package com.lzb.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by luzhibin on 2019/12/23 16:59
