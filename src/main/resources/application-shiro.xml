@@ -39,6 +39,7 @@
             <value>
                 /static/** = anon   <!--不需要登录验证-->
                 /login.jsp = anon   <!--不需要登录验证-->
+                /logout = logout    <!--取消认证-->
                 /**=authc     <!--除指定请求外,其它所有的请求都需要身份验证-->
             </value>
         </property>
