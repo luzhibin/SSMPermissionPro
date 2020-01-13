@@ -29,4 +29,10 @@ public interface EmployeeMapper {
 
     /*根据用户名查询是否有该用户*/
     Employee getEmployeeByUsername(String username);
+
+    /*根据用户ID查询角色表的rnum*/
+    List<String> getRolesById(Long id);
+
+    /*根据用户的id查询权限  资源的名称*/
+    List<String> getPermissionById(Long id);
 }

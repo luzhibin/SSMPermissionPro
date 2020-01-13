@@ -54,4 +54,14 @@
         <property name="realm" ref="employeeRealm"/>
     </bean>
 
+    <!--
+    配置为true即使用cglib继承的方式,
+    false为jdk的接口动态代理   控制器没有实现接口
+    -->
+    <aop:config proxy-target-class="true" ></aop:config>
+    <!-- 使用第三方去扫描shiro的注解 -->
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor ">
+        <property name="securityManager" ref="securityManager"></property>
+    </bean>
+
 </beans>

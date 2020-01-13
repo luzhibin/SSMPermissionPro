@@ -89,8 +89,22 @@
     where eid=#{id}
   </delete>
 
+  <!--根据用户名查询是否有该用户-->
   <select id="getEmployeeByUsername" resultType="com.lzb.pojo.Employee">
     select * from employee
     where username=#{username}
+  </select>
+
+  <!--根据用户ID查询角色表的rnum-->
+  <select id="getRolesById" resultType="java.lang.String">
+    SELECT role.rnum FROM role
+    LEFT JOIN employee_role_rel on employee_role_rel.rid=role.rid WHERE eid = #{id};
+  </select>
+
+  <!-- 根据用户的id查询权限  资源的名称-->
+  <select id="getPermissionById" resultType="java.lang.String">
+    SELECT DISTINCT permission.presource FROM permission
+    LEFT JOIN role_permission_rel on permission.pid=role_permission_rel.pid
+    WHERE rid in (SELECT rid FROM employee_role_rel WHERE eid=#{id});
   </select>
 </mapper>

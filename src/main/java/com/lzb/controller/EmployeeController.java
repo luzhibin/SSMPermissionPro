@@ -3,6 +3,7 @@ package com.lzb.controller;
 import com.lzb.pojo.*;
 import com.lzb.service.EmployeeService;
 import com.lzb.service.RoleService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,11 @@ public class EmployeeController {
         return pageListRes;
     }
 
+    /**
+     *     /*当我们在控制器方法写了 @RequiresPermissions,Shiro在访问时,
+     *     就会判断有没有该权限,如果没有,就不会执行对应方法*/
     @RequestMapping("/employee")
+    @RequiresPermissions("employee:index")
     public String employee(){
         return "employee";
     }

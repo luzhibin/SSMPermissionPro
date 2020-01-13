@@ -79,4 +79,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeMapper.getEmployeeByUsername(username);
 
     }
+
+    /*根据用户的id查询角色表的rnum*/
+    @Override
+    public List<String> getRolesById(Long id) {
+        return employeeMapper.getRolesById(id);
+    }
+
+    /*根据用户的id查询权限  资源的名称*/
+    @Override
+    public List<String> getPermissionById(Long id) {
+        return employeeMapper.getPermissionById(id);
+    }
 }

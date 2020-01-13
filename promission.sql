@@ -11,7 +11,7 @@
  Target Server Version : 80014
  File Encoding         : 65001
 
- Date: 23/12/2019 14:46:39
+ Date: 13/01/2020 18:57:00
 */
 
 SET NAMES utf8mb4;
@@ -93,6 +93,7 @@ INSERT INTO `employee` VALUES (84, '5', '2017-02-16 00:00:00', '5', '5', 1, 0, 6
 INSERT INTO `employee` VALUES (85, '6', '2016-06-23 00:00:00', '19394901085', '19394901085 ', 1, 0, 7, '6');
 INSERT INTO `employee` VALUES (86, '7', '2019-10-16 00:00:00', '15210836295', '15210836295', 1, 0, 5, '7');
 INSERT INTO `employee` VALUES (87, '8', '2019-05-02 00:00:00', '88489456', '8489456', 1, 0, 6, '8489456');
+INSERT INTO `employee` VALUES (88, '实习生A', '2019-12-03 00:00:00', '15842120928', '15842120928@qq.com', 1, 0, 9, '1');
 
 -- ----------------------------
 -- Table structure for employee_role_rel
@@ -146,6 +147,7 @@ INSERT INTO `employee_role_rel` VALUES (82, 28);
 INSERT INTO `employee_role_rel` VALUES (86, 28);
 INSERT INTO `employee_role_rel` VALUES (87, 28);
 INSERT INTO `employee_role_rel` VALUES (77, 30);
+INSERT INTO `employee_role_rel` VALUES (88, 30);
 
 -- ----------------------------
 -- Table structure for permission

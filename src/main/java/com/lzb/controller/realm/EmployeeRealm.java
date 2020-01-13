@@ -7,9 +7,13 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by luzhibin on 2019/12/25 16:38
@@ -42,10 +46,37 @@ public class EmployeeRealm extends AuthorizingRealm {
         return info;
     }
 
-    /*授权*/
+    /**授权
+     * web doGetAuthorizationInfo 什么时候调用
+     * 1.发现访问路径对应的方法上有授权的注解  就会调用doGetAuthorizationInfo
+     * 2.页面中有授权的标签 也会调用
+     * */
     @Override
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        return null;
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        System.out.println("授权调用--------------------------------");
+        /*获取用户的身份信息*/
+        Employee employee = (Employee) principalCollection.getPrimaryPrincipal();
+        /*根据当前的用户查询角色和对应的权限*/
+        List<String> roles = new ArrayList<>();
+        List<String> permissions = new ArrayList<>();
+
+        /*判断当前用户是否是管理员，如果是 则拥有所有权限*/
+        if(employee.getAdmin()){
+            permissions.add("*:*");
+        }else{
+            /*根据员工id查询角色表的rnum*/
+            roles = employeeService.getRolesById(employee.getId());
+            System.out.println("roles:============================"+roles);
+            /*根据用户的id查询权限 资源的名称*/
+            permissions = employeeService.getPermissionById(employee.getId());
+            System.out.println("Permission:============================"+permissions);
+        }
+
+        /*给予授权信息*/
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.addRoles(roles);
+        info.addStringPermissions(permissions);
+        return info;
     }
 
 }
