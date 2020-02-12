@@ -8,3 +8,4 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/employee.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/base.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/role.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/menu.js"></script>

@@ -59,6 +59,7 @@
     </where>
   </sql>
 
+  <!--员工关联部门查询-->
   <select id="selectAll" resultMap="BaseResultMap" >
     select
     e.id,e.username,e.inputtime,e.tel,e.email,e.state,e.admin,e.dep_id,
@@ -68,7 +69,7 @@
     left join department as d
     on e.dep_id = d.id
     <include refid="where_sql"/>
-    order by e.id           /*根据e.id排序*/
+    order by e.id desc           /*根据e.id排序*/
   </select>
 
   <update id="updateState">

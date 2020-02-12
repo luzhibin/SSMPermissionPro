@@ -46,12 +46,28 @@
     </bean>
 
     <!--自定义realm-->
-    <bean id="employeeRealm" class="com.lzb.controller.realm.EmployeeRealm"/>
+    <bean id="employeeRealm" class="com.lzb.controller.realm.EmployeeRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
+    <!-- 凭证匹配器 -->
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <!-- 散列算法 -->
+        <property name="hashAlgorithmName" value="md5"/>
+        <!-- 散列次数 -->
+        <property name="hashIterations" value="2"></property>
+    </bean>
+
+    <!-- 缓存管理器 -->
+    <bean id="ehCache" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml"/>
+    </bean>
 
     <!-- 配置shiro安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <!--注入realm-->
         <property name="realm" ref="employeeRealm"/>
+        <!--注入缓存-->
+        <property name="cacheManager" ref="ehCache"/>
     </bean>
 
     <!--

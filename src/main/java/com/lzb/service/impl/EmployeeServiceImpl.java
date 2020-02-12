@@ -8,6 +8,7 @@ import com.lzb.pojo.PageListRes;
 import com.lzb.pojo.QueryVo;
 import com.lzb.pojo.Role;
 import com.lzb.service.EmployeeService;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +43,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override   //添加员工
     public void saveEmployee(Employee employee){
+        String password = employee.getPassword();
+        String username = employee.getUsername();
+        /*对密码进行MD5加密，使用用户名作为盐值，散列2次*/
+        Md5Hash md5Hash = new Md5Hash(password, username, 2);
+        employee.setPassword(md5Hash.toString());
         /*保存员工*/
         employeeMapper.insert(employee);
         /*保存员工与角色的关系*/
