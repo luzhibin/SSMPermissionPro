@@ -1,6 +1,7 @@
 # SSMPermissionPro
 ## SSM框架之权限系统项目
-### 简介：基于SSM框架和Shiro安全框架的权限管理系统  
+### 简介：基于SSM框架和Shiro安全框架的权限管理系统
+### Shiro 简介：Apache Shiro 是一个强大灵活的开源安全框架，可以完全处理身份验证、授权、加密和会话管理。
 ---
 ### 项目搭建
   * 1.创建Maven-webapp工程  
