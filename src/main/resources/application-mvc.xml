@@ -20,4 +20,19 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <bean class="com.lzb.interceptor.RequestInterceptor">
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--配置文件上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize">
+            <value>1040000</value>
+        </property>
+    </bean>
 </beans>

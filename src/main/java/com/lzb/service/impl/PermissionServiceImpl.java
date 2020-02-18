@@ -5,12 +5,14 @@ import com.lzb.pojo.Permission;
 import com.lzb.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by luzhibin on 2019/12/17 17:08
  */
+@Transactional
 @Service
 public class PermissionServiceImpl implements PermissionService {
 

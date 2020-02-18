@@ -104,7 +104,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="menu"></table>
+		<table tableName="systemlog"></table>
 
 	</context>
 </generatorConfiguration>

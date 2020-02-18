@@ -250,4 +250,51 @@ $(function () {
         /*重新加载数据*/
         $("#dg").datagrid("load",{});
     });
+
+    $("#excelOut").click(function () {
+        window.open('/downloadExcel');
+    });
+
+    $("#excelUpload").dialog({
+        width:260,
+        height:180,
+        title:"导入Excel",
+        buttons:[{
+            text:'保存',
+            handler:function(){
+                $("#uploadForm").form("submit",{
+                    url:"/uploadExcelFile",
+                    success:function (data) {
+                        data = $.parseJSON(data);   //把data转成JSON
+                        if (data.success){
+                            $.messager.alert("提示",data.msg,"info");
+                            /*提示成功后关闭对话框*/
+                            $("#excelUpload").dialog("close");
+                            /*并且重新加载数据表格*/
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("提示",data.msg,"error");
+                            $("#dg").datagrid("reload");
+                        }
+                    }
+                })
+            }
+        },{
+            text:'关闭',
+            handler:function(){
+                $("#excelUpload").dialog("close");
+            }
+        }],
+        closed:true
+    });
+
+    $("#excelIn").click(function () {
+        alert(" 请先下载模板，按照模板填写员工信息 \n 在职状态默认为：在职 \n 是否为管理员默认为：否 \n 所属部门默认为空，请导入Excel后在“员工管理→编辑”中修改");
+        $("#excelUpload").dialog("open");
+    });
+
+    /*下载Excel模板*/
+    $("#downloadTml").click(function () {
+        window.open("/downloadExcelTpl")
+    })
 });
