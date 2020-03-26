@@ -29,11 +29,11 @@
                     <form>
                         <div class="lg-username input-item clearfix">
                             <i class="iconfont"></i>
-                            <input type="text" value="admin" name="username" placeholder="请用户名">
+                            <input type="text" name="username" placeholder="请用户名">
                         </div>
                         <div class="lg-password input-item clearfix">
                             <i class="iconfont"></i>
-                            <input type="password" value="admin" name="password"  placeholder="请输入密码">
+                            <input type="password" name="password"  placeholder="请输入密码">
                         </div>
 
                         <div class="enter">
@@ -53,11 +53,11 @@
     <div class="ft-inner">
         <div class="about-us">
             <a href="javascript:;">关于我们</a>
-            <a href="http://www.itlike.com/">撩课学院</a>
+            <a href="https://blog.csdn.net/qq_40164190" target="_blank">我的博客</a>
             <a href="javascript:;">服务条款</a>
             <a href="javascript:;">联系方式</a>
         </div>
-        <div class="address">  本网站为个人网站  仅供测试参考 &nbsp;编号：210019&nbsp;&nbsp;Copyright&nbsp;©&nbsp;2019&nbsp;-&nbsp;2020&nbsp;luzhibin&nbsp;版权所有</div>
+        <div class="address">  本网站为个人网站  仅供测试参考 &nbsp;&nbsp;Copyright&nbsp;©&nbsp;2019&nbsp;-&nbsp;2020&nbsp;luzhibin&nbsp;版权所有</div>
         <div class="other-info">建议使用IE8及以上版本浏览器&nbsp;粤ICP备&nbsp;19044747号&nbsp;E-mail：1255863672@qq.com</div>
     </div>
 </div>

@@ -30,7 +30,7 @@
 </div>
 <%--底部--%>
 <div data-options="region:'south'" style="height:50px; border-bottom: 3px solid #ec4e00;margin:0 auto;">
-    <p align="center" style="font-size: 14px">撩课学院</p>
+    <p align="center" style="font-size: 14px">目前尚有些BUG仍未修复</p>
 </div>
 <%--左侧菜单--%>
 <div data-options="region:'west',split:true" style="width:300px;margin:0 auto;">

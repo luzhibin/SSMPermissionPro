@@ -19,7 +19,7 @@
     <context:property-placeholder location="classpath:db.properties"/>
     <!--连接池-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-        <property name="driverClassName" value="${jdbc.driver}" />
+        <!--<property name="driverClassName" value="${jdbc.driver}" />-->
         <!--属性文件当中的名称不能和name名称一样-->
         <property name="url" value="${jdbc.url}" />
         <property name="username" value="${jdbc.username}" />
